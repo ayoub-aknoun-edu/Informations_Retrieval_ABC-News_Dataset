@@ -1,0 +1,118 @@
+{% load static %}
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="author" content="colorlib.com">
+    <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet" />
+    <link href="{% static 'search/css/main.css' %}" rel="stylesheet" />
+
+  <body>
+
+    <style>
+
+
+
+.search-results {
+    margin-top: 30px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-gap: 20px;
+    overflow-y: scroll;
+}
+
+.search-result {
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.3);
+    background: rgba(135, 238, 139, 0.56);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(2.3px);
+    -webkit-backdrop-filter: blur(2.3px);
+    border: 1px solid rgba(135, 238, 139, 0.21);
+}
+
+.btn-go {
+  background-color: black;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 20px;
+  margin-top: 10px;
+  float: right;
+}
+.btn-go:hover {
+  background-color: #fff;
+  color: black;
+  border: 1px solid black;
+  padding: 10px 20px;
+  border-radius: 20px;
+  margin-top: 10px;
+  float: right;
+} 
+
+    </style>
+    <div class="s130">
+      <form method="POST">
+        {% csrf_token %}
+        <div class="inner-form">
+          <div class="input-field first-wrap">
+            <div class="svg-wrapper">
+             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path>
+              </svg>
+            </div>
+            <input type="text" id="query" name="query" placeholder="What are you looking for?" />
+          </div>
+          <div class="input-field second-wrap">
+            <button class="btn-search" type="submit">SEARCH</button>
+          </div>
+          
+            
+        </div>
+        <div>
+            {% if docs %}
+          <div class="search-results" >
+              {% for doc in docs %}
+                  <div class="search-result">
+                    <div style="display: flex;justify-content: space-between">
+                        <div style="position: reltive;top: 0;left: 10;color :#fff;background-color:black;border-radius: 50%;width: 30px;height:30px;  display: flex;
+                        align-items: center; 
+                        justify-content: center;margin-bottom: 20px;">
+                       {{ doc.top_document }}
+                    </div>
+                    <div style="color:darkgray">
+                        {{ doc.date }}
+                    </div>
+                </div>
+                    <div>
+                     
+                        {{ doc.headline }}
+                    
+                    </div>
+                    <div>
+                      <button class="btn-go" type="button" onclick="goToLink('{{ doc.link }}')">GO</button>
+                    </div>
+                  </div>
+              {% endfor %}
+          </div>
+      {% endif %}
+    </div>
+      </form>
+      
+    </div>
+    <script>
+      async function goToLink(url) {
+        try {
+          const response = await fetch(`http://localhost:3000/goto?url=${encodeURIComponent(url)}`);
+          const newUrl = await response.text();
+          window.location.href = newUrl;
+        } catch (error) {
+          console.error(`Error getting link for "${url}": ${error.message}`);
+        }
+      }
+    </script>
+  </body>
+</html>
