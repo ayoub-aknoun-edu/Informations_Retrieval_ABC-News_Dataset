@@ -17,6 +17,7 @@ html {
  */
 body {
   margin: 0;
+  max-height: 100%;
 }
 
 /**
@@ -825,14 +826,17 @@ button {
   -ms-flex-pack: center;
       justify-content: center;
   font-family: 'Poppins', sans-serif;
-  padding: 15px;
-  padding-top:0px;
+  padding: 15px;  
+  /* background-image: url("../images/Searchs_1301.jpg "); */
+  background-color: #FFFFFF;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .s130 form {
   width: 100%;
   max-width: 790px;
-
+  padding-top: 15vh;
 }
 
 .s130 form .inner-form {

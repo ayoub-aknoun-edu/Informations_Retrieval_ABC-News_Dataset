@@ -7,18 +7,43 @@
     <meta name="author" content="colorlib.com">
     <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet" />
     <link href="{% static 'search/css/main.css' %}" rel="stylesheet" />
-
+    <head>
+      <title>IR_PROJECT</title>
+    </head>
   <body>
 
     <style>
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
 
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey; 
+  border-radius: 10px;
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background:rgba(135, 238, 139, 0.56); 
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #009451; 
+}
 
 
 .search-results {
+
     margin-top: 30px;
     display: grid;
+    padding: 5 20 0 20;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     grid-gap: 20px;
+    height: 460px;
     overflow-y: scroll;
 }
 
@@ -39,21 +64,46 @@
   color: #fff;
   border: none;
   padding: 10px 20px;
-  border-radius: 20px;
+  border-radius: .9em;
   margin-top: 10px;
   float: right;
 }
 .btn-go:hover {
   background-color: #fff;
   color: black;
-  border: 1px solid black;
-  padding: 10px 20px;
-  border-radius: 20px;
-  margin-top: 10px;
-  float: right;
+  cursor: pointer;
 } 
 
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fff;
+  padding-left: 20px; 
+  padding-right: 60px; 
+  position: sticky;
+  top: 0;
+  width: 100%;
+  z-index: 99999;
+}
+
+.navbar .left {
+  max-width: 100px;
+}
+.navbar .right {
+  max-width: 100px;
+}
+
     </style>
+    <nav class="navbar">
+      <div class="navbar left">
+        <img src="{% static 'search/images/logo.png' %}" alt="Logo" width="250px" height="120px" />
+      </div>
+      <div class="navbar right">
+        <img src="{% static 'search/images/headphones.png' %}" alt="Logo" width="130px" height="120px"/>
+      </div>
+    </nav>
+
     <div class="s130">
       <form method="POST">
         {% csrf_token %}

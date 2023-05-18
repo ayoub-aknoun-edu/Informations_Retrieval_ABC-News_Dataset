@@ -16,7 +16,8 @@ html {
  * Remove the margin in all browsers (opinionated).
  */
 body {
-  margin: 0;
+  overflow: hidden;
+  height: 100%;
 }
 
 /**
@@ -826,7 +827,8 @@ button {
       justify-content: center;
   font-family: 'Poppins', sans-serif;
   padding: 15px;  
-  background-image: url("../images/Searchs_1301.jpg ");
+  /* background-image: url("../images/Searchs_1301.jpg "); */
+  background-color: #FFFFFF;
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -834,7 +836,7 @@ button {
 .s130 form {
   width: 100%;
   max-width: 790px;
-  padding-top: 15vh;
+  padding-top: 0vh;
 }
 
 .s130 form .inner-form {

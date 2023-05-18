@@ -66,4 +66,4 @@ then, you can go to the browser and type the following url http://127.0.0.1:8000
 
 ## Demo
 
-
+![Demo](demo.gif)
